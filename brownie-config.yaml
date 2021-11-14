@@ -1,0 +1,43 @@
+dependencies:
+  - smartcontractkit/chainlink-brownie-contracts@0.2.1
+  - OpenZeppelin/openzeppelin-contracts@4.3.2
+compiler:
+  solc:
+    remappings:
+      - '@chainlink=smartcontractkit/chainlink-brownie-contracts@0.2.1'
+      - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.3.2'
+dotenv: .env
+networks:
+  default: mainnet-fork
+  kovan: 
+    eth_usd_price_feed: ${KOVAN_PRICE_FEED_ADDRESS}
+    verify: True
+    vrf_coordinator:  ${KOVAN_VRF_COORDINATOR_ADDRESS}
+    vrf_link : ${KOVAN_VRF_LINK_TOKEN_ADDRESS}
+    vrf_keyhash:  ${KOVAN_VRF_KEY_HASH}
+    vrf_fee: ${KOVAN_FEE}
+  rinkeby: 
+    eth_usd_price_feed: ${RINKEBY_PRICE_FEED_AGGREGATOR_ADDRESS}
+    verify: True
+    vrf_coordinator:  ${RINKEBY_VRF_COORDINATOR}
+    vrf_link : ${RINKEBY_LINK_TOKEN}
+    vrf_keyhash:  ${RINKEBY_KEY_HASH}
+    vrf_fee: ${RINKEBY_FEE}
+  mainnet-fork: 
+    eth_usd_price_feed: ${MAINNET_PRICE_FEED_AGGREGATOR_ADDRESS}
+    verify: False
+    vrf_coordinator:  ${MAINNET_VRF_COORDINATOR}
+    vrf_link : ${MAINNET_LINK_TOKEN}
+    vrf_keyhash:  ${MAINNET_KEY_HASH}
+    vrf_fee: ${MAINNET_FEE}
+  development:
+    verify: False
+    vrf_keyhash:  ${MAINNET_KEY_HASH}
+    vrf_fee: ${MAINNET_FEE}
+  ganache-local:
+    verify: False
+    vrf_keyhash:  ${MAINNET_KEY_HASH}
+    vrf_fee: ${MAINNET_FEE}
+wallets:
+  from_key: ${PRIVATE_KEY}
+  from_ganache : ${GANACHE_KEY}
